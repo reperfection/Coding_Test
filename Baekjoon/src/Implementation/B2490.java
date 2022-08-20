@@ -1,6 +1,5 @@
 package Implementation;
 // 윷놀이
-
 import java.io.*;
 public class B2490 {
     public static void main(String[] args) throws IOException{
