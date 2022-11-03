@@ -33,7 +33,6 @@ public class B1157 {
             }
             else if(max==map.get(key)) {
                 maxkey = '?';
-                break;
             }
         }
 
