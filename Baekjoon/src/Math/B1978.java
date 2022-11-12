@@ -8,6 +8,7 @@ import java.io.OutputStreamWriter;
 import java.util.StringTokenizer;
 
 public class B1978 {
+    // 1000이하의 자연수 내에서 찾아야 함. 소수x소수 곱했을 때 1000미만은 31이 마지막이라 다음과 같이 지정
     private static int [] primearr = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31};
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
