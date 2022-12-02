@@ -2,6 +2,7 @@ package 자료구조;
 
 // 균형잡힌 세상 - 자료구조(스택)
 // 출력형식의 문제로 계속 틀렸음. 개행문자의 문제일까?
+// 개행문자로 \r\n이 아닌 \n을 써야 한다. \r\n은 윈도우에서 사용하는 개행문자.
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
@@ -26,17 +27,17 @@ public class B4949{
                     stack.add(str.charAt(i));
 
                 else if((str.charAt(i)==')' && stack.isEmpty())||(str.charAt(i)==']'&&stack.isEmpty())) {
-                    bw.write("no"+"\r\n");
+                    bw.write("no"+"\n");
                     break;
                 }
 
                 else if(str.charAt(i)==')'&&stack.peek()=='[') {
-                    bw.write("no"+"\r\n");
+                    bw.write("no"+"\n");
                     break;
                 }
 
                 else if(str.charAt(i)==']'&&stack.peek()=='(') {
-                    bw.write("no"+"\r\n");
+                    bw.write("no"+"\n");
                     break;
                 }
 
@@ -47,10 +48,10 @@ public class B4949{
                     stack.pop();
 
                 else if(str.charAt(i)=='.'&&stack.isEmpty())
-                    bw.write("yes"+"\r\n");
+                    bw.write("yes"+"\n");
 
                 else if(str.charAt(i)=='.'&&stack.isEmpty()==false)
-                    bw.write("no"+"\r\n");
+                    bw.write("no"+"\n");
             }
             stack.clear();
         }
