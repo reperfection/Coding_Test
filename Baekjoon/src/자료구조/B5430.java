@@ -1,15 +1,15 @@
 package 자료구조;
+/*
+AC - 자료구조, 문자열, 덱
+10자리수로 넘어가면 해결하지 못하는 문제
+->charAt()으로 숫자 하나하나만 받아들여 문자열로 저장했기 때문.
+*/
 
-// AC - 자료구조, 문자열, 덱
-// 10자리가 넘어가면 해결하지 못하는 문제
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.IOException;
-import java.util.LinkedList;
+import java.io.*;
 import java.util.Deque;
+import java.util.LinkedList;
+import java.util.StringTokenizer;
+
 
 public class B5430 {
     public static void main(String[] args) throws IOException {
@@ -24,8 +24,8 @@ public class B5430 {
             AC ac = new AC(order, cnt, num);
             ac.deque();
             bw.write(ac.toString());
-            //if(i!=testcase-1)
-            bw.newLine();
+            if(i!=testcase-1)
+                bw.newLine();
         }
         bw.flush();
         bw.close();
@@ -33,13 +33,13 @@ public class B5430 {
 }
 
 class AC {
+    StringTokenizer st;
     StringBuilder sb = new StringBuilder();
-    Deque<Character> deque = new LinkedList<>();
+    Deque<Integer> deque = new LinkedList<>();
     private int len; // 길이
     private String num; // 숫자
     private String order; // 명령어
-    private int reverse_cnt; // 짝수면 정방향, 홀수면 뒤에서ㅛ
-    //private int delete_cnt; // 삭제 카운트
+    private int reverse_cnt; // 짝수면 정방향, 홀수면 뒤에서
 
 
     AC(String order, int cnt, String num) {
@@ -47,35 +47,36 @@ class AC {
         this.order = order;
         this.num = num;
     }
+
     void deque() {
-        num = num.replaceAll("[^0-9]", "");
+        num = num.substring(1, num.length() - 1);
+        st = new StringTokenizer(num, ",");
         for (int i = 0; i < len; i++) {
-            deque.add(num.charAt(i));
+            String temp = "";
+            temp = st.nextToken();
+            if (temp.length() > 0)
+                deque.add(Integer.parseInt(temp));
         }
 
 
-        for(int i=0; i<order.length(); i++) {
+        for (int i = 0; i < order.length(); i++) {
             if (order.charAt(i) == 'R') {
-                if(reverse_cnt==0)
+                if (reverse_cnt == 0)
                     reverse_cnt++;
-                else if(reverse_cnt==1)
+                else if (reverse_cnt == 1)
                     reverse_cnt--;
-            }
-
-            else if(order.charAt(i) == 'D') {
-                if(reverse_cnt==0) {
-                    if(deque.peek()==null) {
+            } else if (order.charAt(i) == 'D') {
+                if (reverse_cnt == 0) {
+                    if (deque.peek() == null) {
                         num = "error";
                         break;
-                    }else
+                    } else
                         deque.poll();
-                }
-
-                else if(reverse_cnt==1) {
-                    if(deque.peek()==null) {
+                } else if (reverse_cnt == 1) {
+                    if (deque.peek() == null) {
                         num = "error";
                         break;
-                    }else
+                    } else
                         deque.pollLast();
                 }
             }
@@ -86,19 +87,19 @@ class AC {
         if (!num.equals("error")) {
             sb.append("[");
 
-            if (reverse_cnt % 2 == 0) {
-                while(deque.isEmpty()!=true) {
+            if (reverse_cnt == 0) {
+                while (deque.isEmpty() != true) {
                     sb.append(deque.poll());
                     sb.append(",");
                 }
-            } else if (reverse_cnt % 2 == 1) {
-                while(deque.isEmpty()!=true) {
+            } else if (reverse_cnt == 1) {
+                while (deque.isEmpty() != true) {
                     sb.append(deque.pollLast());
                     sb.append(",");
                 }
             }
-            if(sb.length()>2)
-                sb.deleteCharAt(sb.length()-1);
+            if (sb.length() > 2)
+                sb.deleteCharAt(sb.length() - 1);
             sb.append("]");
             num = sb.toString();
             return num;
