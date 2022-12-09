@@ -1,5 +1,8 @@
 package 자료구조;
 
+// 암기왕 - 이분탐색
+// 예전에 못 풀 었던 이유 - 이분 탐색을 생각 못했음
+// 이후에 오래걸린 이유 - stringtokenizer을 반복문 안에 넣어서 계속 1 혹은 0이 떳음.
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
